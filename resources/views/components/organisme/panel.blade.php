@@ -15,40 +15,54 @@
         <div class="flex items-center justify-between w-[180px]">
             <div class="flex items-center gap-3.5">
                 <img src="{{ asset('assets/image/gojocat.jpg') }}" alt="profilePict" class="w-10 h-10 rounded-full">
-                <span class="max-w-[90px] truncate overflow-hidden whitespace-nowrap text-[#1F2937]">YourBoy</span>
+                <span class="max-w-[90px] truncate overflow-hidden whitespace-nowrap text-[#1F2937]">{{ session('full_name') }}</span>
             </div>
-            <ion-icon name="chevron-down-outline" class="text-xl text-[#1F2937] cursor-pointer"></ion-icon>
+            <ion-icon name="chevron-down-outline" class="text-xl text-[#1F2937] cursor-pointer" id="modal_option"></ion-icon>
         </div>
     </div>
-    <div class="w-full mt-8 flex flex-col bg-[#F6F7FA] py-5 px-5 rounded-xl">
-        <div class="flex flex-col gap-3 border-b-[#dadadd] border-b-2 pb-8">
-            <span class="text-[#1F2937] font-semibold text-lg">Gym Session Week 3</span>
-            <p class="text-sm text-[#1F2937] text-justify">Day for biceps, legs, and back. The target is 20 for biceps, 10 or legs, and 15 for back.</p>
-        </div>
-        <div class="flex flex-col gap-3 mt-8 pb-8">
-            <span class="text-[#1F2937] font-semibold text-base">List</span>
-            <div class="flex items-center gap-6">
-                <div class="flex items-center gap-2">
-                    <ion-icon name="flash-outline" class="text-xl text-[#6c6c6c] group-hover:text-black"></ion-icon>
-                    <a href="" class="text-base text-[#6c6c6c] font-normal group-hover:text-black">Workout</a>
-                </div>
-                <div class="flex items-center gap-2">
-                    <ion-icon name="globe-outline" class="text-xl text-[#6c6c6c] group-hover:text-black"></ion-icon>
-                    <a href="" class="text-base text-[#6c6c6c] font-normal group-hover:text-black">Learning</a>
+    <div class="hidden" id="activities-panel">
+        <div class="w-full mt-8 flex flex-col bg-[#F6F7FA] py-5 px-5 rounded-xl">
+            <div class="flex flex-col gap-3 border-b-[#dadadd] border-b-2 pb-8">
+                <span class="text-[#1F2937] font-semibold text-lg id_task hidden"></span>
+                <span class="text-[#1F2937] font-semibold text-lg status hidden"></span>
+                <span class="text-[#1F2937] font-semibold text-lg title"></span>
+                <p class="text-sm text-[#6c6c6c] text-justify detail-task"></p>
+            </div>
+            <div class="flex items-center justify-between gap-1 mt-4">
+                <p class="text-sm text-[#1F2937] note"></p>
+                <p class="text-sm text-[#1F2937] remind-at"></p>
+                <p class="text-sm text-[#1F2937] hidden-remind-at hidden"></p>
+            </div>
+            <div class="flex flex-col gap-3 mt-8 pb-8">
+                <span class="text-[#1F2937] font-semibold text-base">List</span>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2">
+                        <ion-icon name="flash-outline" class="text-xl text-[#6c6c6c] group-hover:text-black list-icon"></ion-icon>
+                        <a href="" class="text-base text-[#6c6c6c] font-normal group-hover:text-black list-name"></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-col gap-4 pb-1">
-            <span class="text-[#1F2937] font-semibold text-base">Tags</span>
-            <div class="flex items-center justify-center w-fit py-2 px-6 bg-[#FCE7F3] rounded-lg">
-                <span class="text-base text-[#DB2777] font-normal">Inspiration</span>
+            <div class="flex flex-col gap-4 pb-1">
+                <span class="text-[#1F2937] font-semibold text-base">Tags</span>
+                <div class="flex items-center justify-center w-fit py-2 px-6 bg-[#FCE7F3] rounded-lg tag-wrapper">
+                    <span class="text-base text-[#DB2777] font-normal tag-name"></span>
+                </div>
+            </div>
+            <div class="flex justify-between gap-3 mt-8">
+                <button onclick="openEditModal()" class="w-full bg-[#16A34A] text-white px-4 py-2 rounded-xl hover:bg-[#F6F7FA] hover:outline-[#16A34A] hover:outline-1 hover:text-[#16A34A] transition-all cursor-pointer">Edit</button>
+                <button onclick="openDeleteModal()" class="w-full bg-[#DC2626] text-white px-4 py-2 rounded-xl hover:bg-[#F6F7FA] hover:outline-[#DC2626] hover:outline-1 hover:text-[#DC2626] transition-all cursor-pointer">Delete</button>
             </div>
         </div>
-    </div>
-    <form method="post" action="">
-        @csrf
-        <button type="submit" class="w-full mt-8 rounded-xl bg-[#6359e9] flex justify-center items-center py-3 cursor-pointer border-[#6359e9] border-2 hover:bg-[#FFFFFF] hover:border-[#6359e9] hover:border-2 group transition-all duration-300 ease-in-out">
-            <span class="font-normal text-[#FFFFFF] group-hover:text-[#6359e9]">Save Change</span>
+        <button onclick="closePanel()" class="w-full mt-8 rounded-xl bg-[#DC2626] flex justify-center items-center py-3 cursor-pointer border-[#DC2626] border-2 hover:bg-[#FFFFFF] hover:border-[#DC2626] hover:border-2 group transition-all duration-300 ease-in-out">
+            <span class="font-normal text-[#FFFFFF] group-hover:text-[#DC2626]">Close</span>
         </button>
-    </form>
+    </div>
 </div>
+@include('components.organisme.edit-activity-modal')
+@include('components.organisme.option-modal')
+
+<script>
+    function closePanel() {
+        document.getElementById('activities-panel').classList.add('hidden');
+    }
+</script>
