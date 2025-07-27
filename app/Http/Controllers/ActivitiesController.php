@@ -36,7 +36,7 @@ class ActivitiesController extends Controller
         }])->where('status', 0)->get();
 
         return view('components.templates.activities.index', [
-            'title' => 'All Day Activities',
+            'title' => 'Aktifitas Semua Hari',
             'lists' => $lists,
             'tags' => $tags,
             'habits' => $habits,
@@ -188,7 +188,7 @@ class ActivitiesController extends Controller
             ->get();
 
         return view('components.templates.activities.index', [
-            'title' => 'Today Activities',
+            'title' => 'Aktifitas Hari Ini',
             'lists' => $lists,
             'tags' => $tags,
             'habits' => $habits,
@@ -247,7 +247,7 @@ class ActivitiesController extends Controller
             ->get();
 
         return view('components.templates.activities.index', [
-            'title' => 'Tomorrow Activities',
+            'title' => 'Aktifitas Besok',
             'lists' => $lists,
             'tags' => $tags,
             'habits' => $habits,
@@ -305,7 +305,7 @@ class ActivitiesController extends Controller
 
 
         return view('components.templates.activities.index', [
-            'title' => 'Next 7 Days Activities',
+            'title' => 'Aktifitas 7 Hari Kedepan',
             'lists' => $lists,
             'tags' => $tags,
             'habits' => $habits,

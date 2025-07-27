@@ -4,13 +4,13 @@
         <button onclick="closeLogoutModal()" class="absolute top-3 right-3 text-xl text-gray-400 hover:text-red-500">
             <ion-icon name="close-outline" class="text-3xl"></ion-icon>
         </button>
-        <h2 class="text-lg font-semibold text-[#1F2937] mb-8">Are you sure want to logout?</h2>
+        <h2 class="text-lg font-semibold text-[#1F2937] mb-8">Apakah Anda yakin ingin keluar?</h2>
         <div class="flex justify-end">
             <form action="{{ route('logout') }}" method="POST" class="flex justify-center">
                 @csrf
                 <button type="submit" class="flex items-center gap-2 bg-[#DC2626] hover:bg-[#b91c1c] text-white px-4 py-2 rounded transition-all">
                     <ion-icon name="log-out-outline" class="text-xl"></ion-icon>
-                    <span>Logout</span>
+                    <span>Keluar</span>
                 </button>
             </form>
         </div>

@@ -50,11 +50,11 @@
             </div>
             <div class="flex justify-between gap-3 mt-8">
                 <button onclick="openEditModal()" class="w-full bg-[#16A34A] text-white px-4 py-2 rounded-xl hover:bg-[#F6F7FA] hover:outline-[#16A34A] hover:outline-1 hover:text-[#16A34A] transition-all cursor-pointer">Edit</button>
-                <button onclick="openDeleteModal()" class="w-full bg-[#DC2626] text-white px-4 py-2 rounded-xl hover:bg-[#F6F7FA] hover:outline-[#DC2626] hover:outline-1 hover:text-[#DC2626] transition-all cursor-pointer">Delete</button>
+                <button onclick="openDeleteModal()" class="w-full bg-[#DC2626] text-white px-4 py-2 rounded-xl hover:bg-[#F6F7FA] hover:outline-[#DC2626] hover:outline-1 hover:text-[#DC2626] transition-all cursor-pointer">Hapus</button>
             </div>
         </div>
         <button onclick="closePanel()" class="w-full mt-8 rounded-xl bg-[#DC2626] flex justify-center items-center py-3 cursor-pointer border-[#DC2626] border-2 hover:bg-[#FFFFFF] hover:border-[#DC2626] hover:border-2 group transition-all duration-300 ease-in-out">
-            <span class="font-normal text-[#FFFFFF] group-hover:text-[#DC2626]">Close</span>
+            <span class="font-normal text-[#FFFFFF] group-hover:text-[#DC2626]">Tutup</span>
         </button>
     </div>
 </div>

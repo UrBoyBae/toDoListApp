@@ -2,12 +2,17 @@
 
 use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HabitsController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('login.index');
 }); 
+
+Route::get('/login-alias', function () {
+    return redirect()->route('login.index');
+})->name('login');
 
 // Authentication Routes
 Route::get('/login', [AuthController::class, 'index'])->middleware('guest')->name('login.index');
@@ -28,3 +33,9 @@ Route::get('/activities/nextweek', [ActivitiesController::class, 'nextweek'])->m
 Route::post('/activities/store', [ActivitiesController::class, 'store'])->name('activities.store');
 Route::put('/activities/{task_id}', [ActivitiesController::class, 'update'])->name('activities.update');
 Route::delete('/activities/{task_id}', [ActivitiesController::class, 'destroy'])->name('activities.destroy');
+
+// Add New Habits Routes
+Route::post('/habits', [HabitsController::class, 'store'])->name('habits.store');
+Route::get('/habits/{id}', [HabitsController::class, 'show']);
+Route::put('/habits/{id}', [HabitsController::class, 'update']);
+Route::delete('/habits/{id}', [HabitsController::class, 'destroy']);

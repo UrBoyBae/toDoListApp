@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('app')
-    <div class="flex flex-row w-full min-h-screen">
+    <div class="flex flex-row w-full min-h-screen bg-black">
         <!-- Sidebar -->
         @include('components.organisme.sidebar')
         

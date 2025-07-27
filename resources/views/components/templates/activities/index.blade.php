@@ -1,33 +1,45 @@
 @extends('layouts.index')
 @section('content')
     <div class="w-[950px] min-h-screen bg-[#F6F7FA] px-7 pt-6 pb-16">
-        <div class="flex items-center w-full bg-[#FFFFFF] h-[48px] px-3 rounded-lg gap-3">
-            <ion-icon name="search-outline" class="text-2xl text-[#1F2937]"></ion-icon>
-            <input type="text" name="search" id="search" placeholder="Search"
-                class="placeholder:text-[#1F2937] h-full w-full focus:outline-none focus:ring-0 focus:border-transparent">
+        <div class="flex gap-16 items-center justify-between">
+            <div class="flex min-[1366px]:hidden justify-center items-center gap-2">
+                <ion-icon name="today-outline" class="text-3xl text-[#6359e9]"></ion-icon>
+                <a href="{{ route('activities.allday') }}" class="text-2xl font-bold text-[#1F2937]">HABITRA</a>
+            </div>
+            <div class="flex items-center w-full bg-[#FFFFFF] h-[48px] px-3 rounded-lg gap-3">
+                <ion-icon name="search-outline" class="text-2xl text-[#1F2937]"></ion-icon>
+                <input type="text" name="search" id="search" placeholder="Search"
+                    class="placeholder:text-[#1F2937] h-full w-full focus:outline-none focus:ring-0 focus:border-transparent">
+            </div>
         </div>
         <div class="flex flex-col mt-12 gap-12">
             <div class="flex items-start justify-between">
                 <div class="flex flex-col gap-2">
                     <span class="text-3xl text-[#1F2937] font-semibold">{{ $title }}</span>
-                    <p class="text-base text-[#6c6c6c]">Manage your habits, reminders, events, activities.</p>
+                    <p class="text-base text-[#6c6c6c]">Kelola kebiasaan, pengingat, acara, aktivitas Anda.</p>
                 </div>
                 <div class="flex items-center justify-center w-fit py-2 px-4 bg-[#FFFFFF] rounded-lg gap-3 cursor-pointer hover:outline-[1px] hover:outline-black" id="new_activity">
                     <ion-icon name="add-outline" class="text-xl text-[#1F2937]"></ion-icon>
-                    <span class="text-lg text-[#1F2937] font-normal">New Activity</span>
+                    <span class="text-lg text-[#1F2937] font-normal">Aktifitas Baru</span>
                 </div>
             </div>
             <div class="flex flex-col gap-4">
-                <span class="text-2xl text-[#1F2937] font-medium">Your Habits</span>
-                <div class="grid grid-cols-5 w-full gap-5">
+                <div class="flex items-end gap-5 justify-between">
+                    <span class="text-2xl text-[#1F2937] font-medium">Kebiasaan Anda</span>
+                    <div class="flex items-center justify-center w-fit py-2 px-4 bg-[#FFFFFF] rounded-lg gap-3 cursor-pointer hover:outline-[1px] hover:outline-black" id="new_habits">
+                        <ion-icon name="add-outline" class="text-xl text-[#1F2937]"></ion-icon>
+                        <span class="text-lg text-[#1F2937] font-normal">Kebiasaan Baru</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-4 min-[1200px]:grid-cols-5 w-full gap-5">
                     @foreach ($habits as $habit)
                         @include('components.molekuls.habits-card', ['habit' => $habit])
                     @endforeach
                 </div>
             </div>
             <div class="flex flex-col gap-4">
-                <span class="text-2xl text-[#1F2937] font-medium">Reminders</span>
-                <div class="grid grid-cols-3 w-full gap-5">
+                <span class="text-2xl text-[#1F2937] font-medium">Pengingat Aktifitas</span>
+                <div class="grid grid-cols-2 min-[1366px]:grid-cols-3 w-full gap-5">
                     @foreach ($reminderTasks as $task)
                         @include('components.molekuls.activities-card', ['task' => $task])
                     @endforeach
@@ -35,7 +47,7 @@
             </div>
             <div class="flex flex-col gap-4">
                 <span class="text-2xl text-[#1F2937] font-medium">To Do List</span>
-                <div class="grid grid-cols-3 w-full gap-5">
+                <div class="grid grid-cols-2 min-[1366px]:grid-cols-3 w-full gap-5">
                     <div class="flex flex-col gap-4 w-full h-fit bg-[#F6F7FA]">
                         <div
                             class="flex items-center justify-between w-full h-fit bg-[#ffffff] py-3.5 px-4.5 rounded-lg relative">
@@ -90,4 +102,23 @@
     </div>
 
     @include('components.organisme.activity-modal', ['lists' => $lists, 'tags' => $tags])
+    @include('components.organisme.habits-modal')
+    @include('components.organisme.edit-habits-modal')
+
+    <script>
+        const modalEditHabits = document.getElementById('modalEditHabit');
+        window.addEventListener('click', (e) => {
+            if (e.target === modalEditHabits) {
+                modalEditHabits.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape" && !modalEditHabits.classList.contains('hidden')) {
+                modalEditHabits.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        });
+    </script>
 @endsection

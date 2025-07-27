@@ -1,14 +1,14 @@
 <div id="activityModal" class="fixed inset-0 bg-white/40 backdrop-blur-sm z-50 hidden flex items-center justify-center">
     <div id="modalContent" class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
-        <h2 class="text-xl font-bold mb-4">New Activity</h2>
+        <h2 class="text-xl font-bold mb-4">Aktifitas Baru</h2>
         <form action="{{ route('activities.store') }}" method="POST">
             @csrf
             <div class="mb-4">
-                <label for="title" class="block font-semibold mb-1">Title</label>
+                <label for="title" class="block font-semibold mb-1">Judul Aktifitas</label>
                 <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded px-3 py-2" required>
             </div>
             <div class="mb-4">
-                <label for="detail_task" class="block font-semibold mb-1">Detail</label>
+                <label for="detail_task" class="block font-semibold mb-1">Detail Aktifitas</label>
                 <textarea id="detail_task" name="detail_task" rows="3" class="w-full border border-gray-300 rounded px-3 py-2" required></textarea>
             </div>
             <div class="mb-4">
@@ -28,16 +28,16 @@
                 </select>
             </div>
             <div class="mb-4">
-                <label for="remind_at" class="block font-semibold mb-1">Remind At</label>
+                <label for="remind_at" class="block font-semibold mb-1">Ingatkan Pada</label>
                 <input type="datetime-local" id="remind_at" name="remind_at" class="w-full border border-gray-300 rounded px-3 py-2" required>
             </div>
             <div class="mb-4">
-                <label for="note" class="block font-semibold mb-1">Note</label>
+                <label for="note" class="block font-semibold mb-1">Catatan</label>
                 <input type="text" id="note" name="note" class="w-full border border-gray-300 rounded px-3 py-2" required>
             </div>
             <div class="flex justify-end">
-                <button type="button" id="closeModal" class="px-4 py-2 bg-gray-400 text-white rounded mr-2">Cancel</button>
-                <button type="submit" class="px-4 py-2 bg-[#6359e9] text-white rounded">Save</button>
+                <button type="button" id="closeModal" class="px-4 py-2 bg-gray-400 text-white rounded mr-2">Batal</button>
+                <button type="submit" class="px-4 py-2 bg-[#6359e9] text-white rounded">Simpan</button>
             </div>
         </form>
     </div>
@@ -52,7 +52,7 @@
     // Buka modal
     openBtn.addEventListener('click', () => {
         modal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden'); // Nonaktifkan scroll body
+        document.body.classList.add('overflow-hidden');
     });
 
     
@@ -60,11 +60,11 @@
         modal.classList.add('hidden');
         document.body.classList.remove('overflow-hidden');
     });
-    // Klik di luar modalContent = tutup modal
+
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden'); // Aktifkan scroll lagi
+            document.body.classList.remove('overflow-hidden');
         }
     });
 

@@ -4,19 +4,19 @@
         <button onclick="closeEditModal()" class="absolute top-3 right-3 text-xl text-gray-400 hover:text-red-500">
             <ion-icon name="close-outline" class="text-4xl"></ion-icon>
         </button>
-        <h2 class="text-xl font-bold mb-4">Edit Activity</h2>
+        <h2 class="text-xl font-bold mb-4">Ubah Aktifitas</h2>
         <form method="POST" id="edit-form"">
             @csrf
             @method('PUT')
             <input type="hidden" name="task_id" id="edit-task-id">
             
             <div class="mb-4">
-                <label class="block text-gray-700 mb-1">Title</label>
+                <label class="block text-gray-700 mb-1">Judul Aktifitas</label>
                 <input type="text" name="title" id="edit-title" class="w-full border px-3 py-2 rounded" required>
             </div>
 
             <div class="mb-3">
-                <label class="block text-gray-700 mb-1">Detail</label>
+                <label class="block text-gray-700 mb-1">Detail Aktifitas</label>
                 <textarea name="detail_task" id="edit-detail" class="w-full border px-3 py-2 rounded"></textarea>
             </div>
 
@@ -39,12 +39,12 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-gray-700 mb-1">Remind At</label>
+                <label class="block text-gray-700 mb-1">Ingatkan Pada</label>
                 <input type="datetime-local" name="remind_at" id="edit-remind-at" class="w-full border px-3 py-2 rounded">
             </div>
 
             <div class="mb-4">
-                <label class="block text-gray-700 mb-1">Note</label>
+                <label class="block text-gray-700 mb-1">Catatan</label>
                 <input type="text" name="note" id="edit-note" class="w-full border px-3 py-2 rounded">
             </div>
 
@@ -56,7 +56,7 @@
                     <option value="2">Completed</option>
                 </select>
             </div>
-            <button type="submit" class="w-full bg-[#6359e9] text-white px-4 py-2 rounded hover:bg-indigo-600 transition-all">Update Activity</button>
+            <button type="submit" class="w-full bg-[#6359e9] text-white px-4 py-2 rounded hover:bg-indigo-600 transition-all">Ubah Aktifitas</button>
         </form>
         <form id="delete-form" method="POST" style="display: none;">
             @csrf
@@ -129,7 +129,7 @@
     });
 
     function openDeleteModal() {
-        if (confirm('Are you sure you want to delete this activity?')) {
+        if (confirm('Apakah Anda yakin ingin menghapus aktivitas ini?')) {
             const panel = document.getElementById('activities-panel');
             const taskId = panel.querySelector('.id_task').textContent;
             const deleteForm = document.getElementById('delete-form');
